@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数字化博物馆</title>
+    <style>
+        /* 全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #fafafa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* 导航栏 */
+        header {
+            background-color: #ff6b9e;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* 主要内容 */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 0;
+        }
+        
+        .welcome-section {
+            text-align: center;
+            margin-bottom: 2rem;
+            width: 100%;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            color: #ff6b9e;
+            margin-bottom: 1rem;
+        }
+        
+        p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto 1.5rem;
+        }
+        
+        /* 3D模型展示区 */
+        .model-container {
+            width: 100%;
+            max-width: 920px;
+            margin: 2rem auto;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .sketchfab-embed-wrapper {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 120%; /* 根据模型比例调整 */
+        }
+        
+        .sketchfab-embed-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        /* 特色展品 */
+        .featured-exhibits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+            width: 100%;
+        }
+        
+        .exhibit-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .exhibit-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .exhibit-img {
+            height: 200px;
+            background-color: #ff6b9e;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .exhibit-info {
+            padding: 1.5rem;
+        }
+        
+        .exhibit-info h3 {
+            color: #ff6b9e;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* 页脚 */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links li {
+            margin: 0 1rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .featured-exhibits {
+                grid-template-columns: 1fr;
+            }
+            
+            .sketchfab-embed-wrapper {
+                padding-bottom: 150%;
+            }
+        }
+        
+        @media (min-width: 769px) {
+            .mobile-menu-btn {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">数字化博物馆</div>
+                <ul class="nav-links">
+                    <li><a href="#">首页</a></li>
+                    <li><a href="#">展讯</a></li>
+                    <li><a href="#">特色展品</a></li>
+                    <li><a href="#">联系我们</a></li>
+                </ul>
+                <button class="mobile-menu-btn">☰</button>
+            </nav>
+        </div>
+    </header>
+    
+    <main class="main-content">
+        <section class="welcome-section">
+            <div class="container">
+                <h1>欢迎来到数字化博物馆</h1>
+                <p>探索千年文化遗产，体验前沿数字技术带来的沉浸式观展体验。我们的数字化博物馆将传统文物与现代科技完美结合，为您带来前所未有的文化之旅。</p>
+            </div>
+        </section>
+        
+        <section class="model-container">
+            <div class="sketchfab-embed-wrapper">
+                <iframe title="Untitled" frameborder="0" allowfullscreen mozallowfullscreen="true" 
+                    webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" 
+                    xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered 
+                    web-share width="920" height="1080" 
+                    src="https://sketchfab.com/models/c237276f08d7423bbbb7651ecdd52808/embed">
+                </iframe>
+            </div>
+        </section>
+        
+        <section class="featured-exhibits">
+            <div class="container">
+                <h2 style="grid-column: 1 / -1; text-align: center; color: #ff6b9e;">特色展品</h2>
+                <div class="exhibit-card">
+                    <div class="exhibit-img" style="background-image: url('https://via.placeholder.com/300x200/ff6b9e/ffffff?text=展品1');"></div>
+                    <div class="exhibit-info">
+                        <h3>青铜器系列</h3>
+                        <p>商周时期精美青铜器，展现中国古代青铜工艺的高超技艺。</p>
+                    </div>
+                </div>
+                <div class="exhibit-card">
+                    <div class="exhibit-img" style="background-image: url('https://via.placeholder.com/300x200/ff6b9e/ffffff?text=展品2');"></div>
+                    <div class="exhibit-info">
+                        <h3>瓷器珍品</h3>
+                        <p>唐宋元明清各朝代代表性瓷器，感受中国瓷器的千年魅力。</p>
+                    </div>
+                </div>
+                <div class="exhibit-card">
+                    <div class="exhibit-img" style="background-image: url('https://via.placeholder.com/300x200/ff6b9e/ffffff?text=展品3');"></div>
+                    <div class="exhibit-info">
+                        <h3>书画艺术</h3>
+                        <p>历代名家书画作品，领略中国传统艺术的独特韵味。</p>
+                    </div>
+                </div>
+                <div class="exhibit-card">
+                    <div class="exhibit-img" style="background-image: url('https://via.placeholder.com/300x200/ff6b9e/ffffff?text=展品4');"></div>
+                    <div class="exhibit-info">
+                        <h3>数字复原</h3>
+                        <p>运用数字技术复原的古代建筑与文物，重现历史原貌。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <ul class="footer-links">
+                <li><a href="#">关于我们</a></li>
+                <li><a href="#">隐私政策</a></li>
+                <li><a href="#">使用条款</a></li>
+                <li><a href="#">工作机会</a></li>
+            </ul>
+            <p>© 2023 数字化博物馆 版权所有</p>
+            <p>地址：北京市海淀区中关村大街1号 | 电话：010-12345678</p>
+        </div>
+    </footer>
+    
+    <script>
+        // 简单的移动端菜单切换
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+        
+        // 响应式调整iframe大小
+        function adjustIframeSize() {
+            const iframe = document.querySelector('.sketchfab-embed-wrapper iframe');
+            const wrapper = document.querySelector('.sketchfab-embed-wrapper');
+            
+            if (window.innerWidth < 768) {
+                iframe.style.width = '100%';
+                iframe.style.height = 'auto';
+                wrapper.style.paddingBottom = '150%';
+            } else {
+                iframe.style.width = '920px';
+                iframe.style.height = '1080px';
+                wrapper.style.paddingBottom = '120%';
+            }
+        }
+        
+        window.addEventListener('resize', adjustIframeSize);
+        window.addEventListener('load', adjustIframeSize);
+    </script>
+</body>
+</html>
